@@ -11,6 +11,7 @@ use sqlx::{Row, SqlitePool};
 use std::{fs, path::PathBuf, str::FromStr};
 use tower_http::cors::CorsLayer;
 
+
 #[derive(Clone)]
 struct AppState {
     db: SqlitePool,
@@ -244,8 +245,7 @@ async fn main() {
         .route("/daily_entries", post(create_daily_entry).get(list_daily_entries))
         .layer(CorsLayer::permissive())
         .with_state(state);
-
-    let addr = "0.0.0.0:3001";
+    let addr = "0.0.0.0:3002";
     println!("listening on http://{addr}");
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
