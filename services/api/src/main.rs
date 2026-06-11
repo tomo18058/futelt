@@ -9,8 +9,7 @@ use serde::{Deserialize, Serialize};
 use sqlx::sqlite::{SqliteConnectOptions, SqlitePoolOptions};
 use sqlx::{Row, SqlitePool};
 use std::{fs, path::PathBuf, str::FromStr};
-use tower_http::cors::CorsLayer;
-
+use tower_http::{cors::CorsLayer,services::ServeDir};
 
 #[derive(Clone)]
 struct AppState {
@@ -243,6 +242,7 @@ async fn main() {
         .route("/health", get(health))
         .route("/messages", post(create_message).get(list_messages))
         .route("/daily_entries", post(create_daily_entry).get(list_daily_entries))
+        .nest_service("/static", ServeDir::new("static"))
         .layer(CorsLayer::permissive())
         .with_state(state);
     let addr = "0.0.0.0:3002";
