@@ -387,6 +387,13 @@
     content: "💬 ";
     }
 
+.chip-icon{
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: inline-block;
+}
+
     @media (max-width: 720px){
       .wrap{ padding: 34px 16px; }
       .title{ font-size: 34px; }
@@ -402,15 +409,21 @@
         <div class="wrap">
         <div class="card">
             <div class="topbar">
-            <button type="button" class="chip" data-theme-btn="pastel">🌸 パステル</button>
-            <button type="button" class="chip" data-theme-btn="mint">🍃 ミント</button>
-            <button type="button" class="chip" data-theme-btn="dark">🌙 ダーク</button>
+            <button type="button" class="chip" data-theme-btn="pastel">
+              <img src="/static/assets/cherryblossom.png" alt="" class="chip-icon">
+            </button>
+            <button type="button" class="chip" data-theme-btn="mint">
+              <img src="/static/assets/mint.png" alt="" class="chip-icon">
+            </button>
+            <button type="button" class="chip" data-theme-btn="dark">
+              <img src="/static/assets/moon.png" alt="" class="chip-icon">
+            </button>
             </div>
 
             <div class="header">
             <div class="logo">F</div>
             <h1 class="title">Futelt</h1>
-            <span class="badge">未来の自分チャット ✨</span>
+            <span class="badge">未来の自分チャット</span>
             </div>
 
             <p class="sub">
