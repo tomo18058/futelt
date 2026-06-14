@@ -42,31 +42,76 @@ Futelt はそれとは異なり、以下の方針で設計されています。
 
 ## 技術スタック
 
-### フロントエンド
+### フロントエンド（現在）
+- HTML
+- CSS
+- JavaScript
+- Axumテンプレート
+
+### フロントエンド（移行予定）
 - Rust + WebAssembly
 - Leptos
-- SPA 形式（PWA 対応予定）
+- SPA形式（PWA対応予定）
 
 ### バックエンド
 - Rust
 - axum
 - tokio（非同期ランタイム）
+- tower-http（静的ファイル配信）
 
 ### データベース
 - SQLite（開発用）
 - PostgreSQL（公開運用想定）
-- sqlx（マイグレーション対応）
+- sqlx（マイグレーション対応予定）
 
 ---
 
-## ディレクトリ構成（予定）
+## ディレクトリ構成
+
 ```text
 futelt/
-├─ apps/
-│  └─ web/        # フロントエンド（Leptos / WASM）
-├─ services/
-│  └─ api/        # バックエンド（axum）
+├─ .github/
+│  └─ pull_request_template.md   # PRテンプレート
+│
 ├─ crates/
-│  ├─ domain/     # ドメインモデル定義
-│  └─ engine/     # 状態推定・返答生成ロジック
-└─ Cargo.toml     # Rust workspace 設定
+│  ├─ domain/
+│  │   ├─ src/
+│  │   │   └─ lib.rs             # ドメインモデル
+│  │   └─ Cargo.toml
+│  │
+│  └─ engine/
+│      ├─ src/
+│      └─ Cargo.toml             # 返答生成ロジック
+│
+├─ data/
+│  └─ futelt.db                  # SQLiteデータベース
+│
+├─ services/
+│  └─ api/
+│      ├─ src/
+│      │   └─ main.rs            # APIサーバー
+│      ├─ templates/
+│      │   └─ index.html         # HTMLテンプレート
+│      ├─ static/
+│      │   └─ assets/            # API側で配信する画像ファイル
+│      └─ Cargo.toml
+│
+├─ web/
+│  ├─ src/
+│  │   ├─ app.rs                 # Leptosアプリ本体
+│  │   ├─ lib.rs
+│  │   └─ main.rs                # Leptosエントリーポイント
+│  │
+│  ├─ public/
+│  │   ├─ assets/                # フロントエンド用画像
+│  │   └─ favicon.ico
+│  │
+│  ├─ style/                     # CSS
+│  ├─ end2end/                   # Playwrightテスト
+│  └─ Cargo.toml
+│
+├─ Cargo.toml                    # Rust workspace設定
+├─ Cargo.lock
+├─ README.md
+└─ LICENSE
+```
