@@ -379,13 +379,13 @@
     margin-bottom: 4px;
     }
 
-    .message-bubble.future::before{
+    /* .message-bubble.future::before{
     content: "⏳ ";
-    }
+    } */
 
-    .message-bubble.user::before{
+    /* .message-bubble.user::before{
     content: "💬 ";
-    }
+    } */
 
 .chip-icon{
   width: 20px;
@@ -526,10 +526,10 @@
                 const li = document.createElement('li');
                 li.className = 'history-card';
                 li.innerHTML = `
-                    <div class="message-role">💬 あなた</div>
+                    <div class="message-role">あなた</div>
                     <div class="message-bubble user">${escapeHtml(item.text)}</div>
 
-                    <div class="message-role">💞 ${escapeHtml(item.future ?? '未来の自分')}</div>
+                    <div class="message-role">${escapeHtml(item.future ?? '未来の自分')}</div>
                     <div class="message-bubble future">${escapeHtml(item.reply)}</div>
                 `;
                 list.appendChild(li);
